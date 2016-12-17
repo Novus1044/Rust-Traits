@@ -1,8 +1,12 @@
 use std::iter::IntoIterator;
 use std::iter::Iterator;
 
-// Unlike src1.rs, this base structure is generic over any type T
-pub struct NewStruct<T> {
+// Unlike src1.rs, this base structure is generic over any type T, where T is a Copy type.
+// This constrains NewStruct objects to containing values that are primitive types like char, bool, i8, u8, etc.
+#[derive(Copy,Clone)]
+pub struct NewStruct<T> 
+  where T: Copy {
+    
   field1: T,
   field2: T,
   field3: T,
@@ -11,7 +15,6 @@ pub struct NewStruct<T> {
 }
 
 // The clause where: T Copy means that NewStructIntoIter only accepts NewStruct objects whose fields implement the Copy trait.
-// It is constraining the types that T can be. Copy types would be primitive types like char, bool, i8, u8, etc.
 pub struct NewStructIntoIter<T> 
   where T: Copy {
   
