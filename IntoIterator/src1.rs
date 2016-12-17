@@ -24,7 +24,7 @@ pub struct NewStruct {
 // the NewStruct. We can use the `count` field to know when to stop iterating. For example, if we wanted
 // to walk through the structure and print the field's values as we go we can continually update the `count` each time until it 
 // is equal to five. Once that is the case the iteration will end and we know we have gone completely through our object.
-struct NewStructIntoIter{
+pub struct NewStructIntoIter{
   count: usize,
   new_struct: NewStruct,
 }
