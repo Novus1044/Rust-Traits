@@ -1,6 +1,5 @@
 // Just like src1.rs this file cannot be compiled as is. We still have to meet the constraint of IntoIter: Iterator which is 
 // not satisfied in this source file.
-
 use std::iter::IntoIterator;
 use std::iter::Iterator;
 
