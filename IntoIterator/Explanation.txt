@@ -24,7 +24,9 @@
  int32_t *dynamic_array = (int32_t *)malloc( 5 * sizeof *dynamic_array );
   
  Since you get the raw pointer back from the heap allocated data the sizeof operator on dynamic_array will actually just
- return the sizeof the int32_t *. If you are working on 64-bit architecture the sizeof operation in this case would return the value 8.
+ return the sizeof the int32_t *. If you are working on 64-bit architecture the sizeof operation in this case would return the   
+ value 8.
+ 
  So if you did the trick above with:
  
  size_t num_dynamic_array_elements = (sizeof dynamic_array) / (sizeof dynamic_array[0]); 
@@ -42,7 +44,7 @@
  
  struct DynamicArray {
    int32_t *data;              // you would allocate the memory to this field of the struct
-   size_t length;              // you would embed the length one time and use it anytime you needed to iterate over the collection
+   size_t length;              // then embed the length one time and use it any time you need to iterate over the collection
  };
  
  This is exactly the process/behavior that the IntoIterator in Rust is trying to accomplish.
@@ -50,5 +52,14 @@
  iteratable (like the dynamic array with no length component) and wrapping up in a new type so we can easily define
  a way to iterate through it.
   
- Now onto the code. The example provided in the repository shows how you could take a structure with five different fields and 
- iterate over it.
+ Now onto the code!!!
+ 
+ The examples provided in the repository shows how you could take a structure and implement the IntoIterator trait.
+ 
+ I have provided three different source files, creatively named src1.rs, src2.rs and src3.rs. 
+ 
+ src1.rs -- as simple of an implementation as I could think of, no use of generics and uses only primitive types.
+ src2.rs -- a slightly more difficult implementation where the base structure could be of any type and we constrain the 
+            the newtype to work with only types that implement Copy.
+ src3.rs -- this source file is completely generic, the only constraint I enforce is that the iterator over type T implements 
+            the Clone trait.
