@@ -44,7 +44,7 @@ impl<T> IntoIterator for NewStruct<T>
 		
 		NewStructIntoIter {
 			count: 0 as usize, 
-			new_struct: self,             // This is a bitwise copy of self since we are using Copy types, no move occurs here.
+			new_struct: self,             // This is a bitwise copy of self since we are using Copy types, no move occurs here
 		}
 	}
 }
