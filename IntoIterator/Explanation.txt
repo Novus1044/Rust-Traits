@@ -1,0 +1,54 @@
+ The whole purpose of the IntoIterator trait is to take a type that logically can be iterated over but lacks the appropriate
+ information to properly iterate over it. That may seem rather vacuous but the explanation below should help clarify.
+
+ The classic example of this would be an array in C where an array decays to a pointer so no information
+ is provided with respect to its length. For a local (stack) allocated array you could always use the following code:
+
+ size_t const num_array_elements = (sizeof array_name) / (sizeof array_name[0]); 
+
+ Now to iterate over this array you could do:
+  
+ for (size_t i = 0; i < num_array_elements; ++i ) {
+   // do whatever you need to with each array element
+ }
+ 
+ The sizeof technique above does not work with a dynamically allocated array since the call to malloc (or any other allocator)
+ returns you a pointer to the beginning location of the allocated memory. No length information is embedded. The code for
+ this situation in C would look like the following:
+  
+ Assume the array contains elements of 32bit integers:
+  
+ #include <stdlib.h>  // declaration of malloc()
+ #include <stdint.h>  // typedef for int32_t among a handful of others
+  
+ int32_t *dynamic_array = (int32_t *)malloc( 5 * sizeof *dynamic_array );
+  
+ Since you get the raw pointer back from the heap allocated data the sizeof operator on dynamic_array will actually just
+ return the sizeof the int32_t *. If you are working on 64-bit architecture the sizeof operation in this case would return the value 8.
+ So if you did the trick above with:
+ 
+ size_t num_dynamic_array_elements = (sizeof dynamic_array) / (sizeof dynamic_array[0]); 
+     
+ NOTE: If the dynamic array is a void * the line of code sizeof dynamic_array[0] is undefined behavior since you are
+       dereferencing a null pointer.
+
+ You would get 8 / 4 or 2 which is not the number of elements in the dynamic array.
+  
+ One solution is to create a newtype to encapsulate this array data along with its length. 
+ If we do this then we can SAFELY iterate over the elements because we know exactly the number of elements that belong
+ to the collection.
+ 
+ So in C we could create a new wrapper type to encapsulate the raw data along with its length.
+ 
+ struct DynamicArray {
+   int32_t *data;              // you would allocate the memory to this field of the struct
+   size_t length;              // you would embed the length one time and use it anytime you needed to iterate over the collection
+ };
+ 
+ This is exactly the process/behavior that the IntoIterator in Rust is trying to accomplish.
+ When we implement the IntoIterator trait, we are defining how to take a type that is not initially 
+ iteratable (like the dynamic array with no length component) and wrapping up in a new type so we can easily define
+ a way to iterate through it.
+  
+ Now onto the code. The example provided in the repository shows how you could take a structure with five different fields and 
+ iterate over it.
