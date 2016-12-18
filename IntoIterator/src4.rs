@@ -47,7 +47,7 @@ pub struct NewStructIntoIter<'a,T>
       
         NewStructIntoIter {
           count: 0 as usize,
-          new_struct: self,  // self here is of type &'a NewStruct<T>, so our type now contains a reference to the whole structure
+          new_struct: self,  // self is of type &'a NewStruct<T>, so our type now contains a reference to the whole structure
         }
     }
 }
