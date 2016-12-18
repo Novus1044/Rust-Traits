@@ -88,7 +88,7 @@ fn main() -> () {
     // NOTE: you can also write the first line of the for loop as "for x in n.into_iter()" as well
 }
 
-// This code prints the field values of the NewStruct object n.
+// This code prints the field values of the NewStruct object n
 // 1
 // 2
 // 3
