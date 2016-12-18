@@ -1,12 +1,12 @@
 In this folder we will be implementing the Iterator trait for our data type from the IntoIterator section. We had four 
-different implemenations of the IntoIterator for our type (varying based on the genericity of the base structure) so this 
+different implementations of the IntoIterator for our type (varying based on the genericity of the base structure) so this 
 folder will have a corresponding implementation for each of those source files.
 
 When we implement the Iterator trait for a type we are actually defining how the values of our iterator will be generated.
 The Iterator trait defines a method called `next` which is what needs to be defined in order to extract values from the 
 iterator using Rust's for loop syntax.
 
-Just for clarity, the for loop syntax contains sugar which hides the fact that your type is repeatedly calling the `next` method.
+The for loop syntax contains sugar which hides the fact that your type is repeatedly calling the `next` method.
 Here is a simple example taken from the Rust docs showing the actual operation of the for loop syntax. 
 
 From Rust Docs:
