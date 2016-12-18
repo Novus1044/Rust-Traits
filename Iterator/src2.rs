@@ -71,7 +71,7 @@ impl<T> IntoIterator for NewStruct<T>
 fn main() -> () {
 
 	let n = NewStruct {
-		field1: 10 as u64,  // could define all these fields "as u64" but you only need to do it once since NewStruct is only
+		field1: 10 as u64,  // Could define all these fields "as u64" but you only need to do it once since NewStruct is only
 		field2: 11,         // generic over a single type parameter T. Once we define T, then for this to compile the other fields
 		field3: 12,         // must also be of type T.
 		field4: 13,
