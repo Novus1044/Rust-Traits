@@ -19,7 +19,7 @@ pub struct NewStructIntoIter<T>
   where T: Clone {
   
   count: usize,
-  new_struct: NewType,
+  new_struct: NewStruct,
 }
 
 /* Included is the trait definition for your reference
