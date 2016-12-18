@@ -9,7 +9,7 @@ iterator using Rust's for loop syntax.
 Just for clarity, the for loop syntax contains sugar which hides the fact that your type is repeatedly calling the `next` method.
 Here is a simple example taken from the Rust docs showing the actual operation of the for loop syntax. 
 
-Again this is from the Rust Docs:
+From Rust Docs:
 
 fn main() -> () {
 
