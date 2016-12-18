@@ -19,7 +19,8 @@ pub struct NewStruct<T> {
 
 // The syntax T: 'a is read as T must outlive 'a 
 // This means that any reference contained in T must outlive 'a
-pub struct NewStructIntoIter<'a,T>
+// Note: I changed the name to NewStructIterRef since we are returning references, we could have used NewStructIntoIter just as before
+pub struct NewStructIterRef<'a,T>
   where T: 'a {
   
   count: usize,
@@ -41,11 +42,11 @@ pub struct NewStructIntoIter<'a,T>
     where T: 'a {
     
     type Item = &'a T;   // now our iterator will return references to the fields instead of the field values themselves
-    type IntoIter = NewStructIntoIter<'a,T>;
+    type IntoIter = NewStructIterRef<'a,T>;
     
-    fn into_iter( self: Self ) -> NewStructIntoIter<'a,T> {
+    fn into_iter( self: Self ) -> NewStructIterRef<'a,T> {
       
-        NewStructIntoIter {
+        NewStructIterRef {
           count: 0 as usize,
           new_struct: self,  // self is of type &'a NewStruct<T>, so our type now contains a reference to the whole structure
         }
