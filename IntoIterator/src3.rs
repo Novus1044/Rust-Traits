@@ -19,7 +19,7 @@ pub struct NewStructIntoIter<T>
   where T: Clone {
   
   count: usize,
-  new_struct: NewStruct,
+  new_struct: NewStruct<T>,
 }
 
 /* Included is the trait definition for your reference
@@ -37,9 +37,9 @@ impl<T> IntoIterator for NewStruct<T>
   where T: Clone {
   
   type Item = T;
-  type IntoIter = NewStructIntoIter;
+  type IntoIter = NewStructIntoIter<T>;
   
-  fn into_iter( self: Self ) -> NewStructIntoIter {
+  fn into_iter( self: Self ) -> NewStructIntoIter<T> {
   
     NewStructIntoIter {
       count: 0 as usize,
