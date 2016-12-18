@@ -56,7 +56,7 @@ impl<T> IntoIterator for NewStruct<T>
 		
 		self.count += 1; 
 		
-		// Since T is constrained to Copy types the values returned will be copies of the fields, no moves occur
+		// Since T is constrained to Copy types the values returned will be copies of the fields, no moves occur.
 		match self.count {
 			1 => { Some(self.new_struct.field1) },
 			2 => { Some(self.new_struct.field2) },
