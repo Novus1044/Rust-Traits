@@ -63,3 +63,6 @@
             the newtype to work with only types that implement Copy.
  src3.rs -- this source file is completely generic, the only constraint I enforce is that the iterator over type T implements 
             the Clone trait.
+ src4.rs -- the previous source files setup our Iterator to return the actual values of the structure fields. This file shows
+            how we can setup the Iterator to return references to the fields of the structure rather than the field
+            values themselves. 
