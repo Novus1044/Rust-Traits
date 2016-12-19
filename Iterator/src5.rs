@@ -66,7 +66,7 @@ impl<'a,T> Iterator for NewStructMutRef<'a,T>
 
 // However, this will not fix the situation for two reasons:
 //  1. That is not how the trait is defined so we will get a method incompatible with trait error
-/   2. This new form does not describe the semantics that next is supposed to have.
+//  2. This new form does not describe the semantics that next is supposed to have.
 //       This form is now saying that the lifetime of the NewStructMutRef is the same as the elements it returns which 
 //       we know is not the case. In particular, the lifetime 'a contains (or outlives) the NewStructMutRef
 
