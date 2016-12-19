@@ -82,10 +82,10 @@ fn main() -> () {
         }
     }
     
-    println!( "{}", n_copy.field1 );
-    println!( "{}", n_copy.field5 );
+    println!( "{}", n_copy.field1 );   // output: 10
+    println!( "{}", n_copy.field5 );   // output: 10
     
-    println!( "{}", *n_clone.field1 );
-    println!( "{}", *n_clone.field5 );
+    println!( "{}", *n_clone.field1 ); // output: 10
+    println!( "{}", *n_clone.field5 ); // output: 10
  }
     
