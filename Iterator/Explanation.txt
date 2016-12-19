@@ -33,7 +33,7 @@ fn main() -> () {
       mut iter => loop {
         match iter.next() {                      // the loop repeatedly calls the .next() method until None is returned
           Some(x) => { println!( "{}", x ); },
-          None    => { None },
+          None    => { break; },
         }
       },
     };
