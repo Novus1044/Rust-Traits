@@ -76,4 +76,3 @@ impl<'a,T> Iterator for NewStructMutRef<'a,T>
 
 // You could circumvent this by using unsafe code and *mut T since there is no explicit lifetime restriction when using 
 // unsafe pointers.
-    
