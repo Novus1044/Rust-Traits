@@ -72,7 +72,12 @@ impl<'a,T> Iterator for NewStructMutRef<'a,T>
 
 // The fact that this will not compile seems odd given that the fields of base structure (NewStruct) are disjoint so we 
 // should be able to borrow them individually. The problem is we don't have the semantics to properly tell the compiler that
-// the mutable borrow of the field has a shorter lifetime than the mutable borrow of the NewStructMutRef so it craps out.
+// the mutable borrow of the field has a shorter lifetime than the mutable borrow of the NewStructMutRef so it craps out. Even if
+// the lifetimes were lifted out of the `next` method and into the trait we would run into the fact that we cannot mutably
+// borrow a struct more than once at a time so each call to `next` would cause the compiler to complain that the Iterator
+// cannot be borrowed more than once at a time.
 
 // You could circumvent this by using unsafe code and *mut T since there is no explicit lifetime restriction when using 
 // unsafe pointers.
+
+// An implementation using unsafe pointers is located in src6.rs
