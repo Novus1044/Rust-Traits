@@ -1,5 +1,5 @@
  The whole purpose of the IntoIterator trait is to take a type that logically can be iterated over but lacks the appropriate
- information to properly iterate over it. That may seem rather vacuous but the explanation below should help clarify.
+ information to properly iterate over it.
 
  The classic example of this would be an array in C where an array decays to a pointer so no information
  is provided with respect to its length. For a local (stack) allocated array you could always use the following code:
@@ -30,11 +30,11 @@
  So if you did the trick above with:
  
  size_t num_dynamic_array_elements = (sizeof dynamic_array) / (sizeof dynamic_array[0]); 
-     
- NOTE: If the dynamic array is a void * the line of code sizeof dynamic_array[0] is undefined behavior since you are
-       dereferencing a null pointer.
 
  You would get 8 / 4 or 2 which is not the number of elements in the dynamic array.
+ 
+ NOTE: If the dynamic array is a void * the line of code sizeof dynamic_array[0] is undefined behavior since you are
+       dereferencing a null pointer.
   
  One solution is to create a newtype to encapsulate this array data along with its length. 
  If we do this then we can SAFELY iterate over the elements because we know exactly the number of elements that belong
@@ -56,7 +56,7 @@
  
  The examples provided in the repository shows how you could take a structure and implement the IntoIterator trait.
  
- I have provided three different source files, creatively named src1.rs, src2.rs and src3.rs. 
+ I have provided four different source files, creatively named src1.rs, src2.rs, src3.rs and src4.rs
  
  src1.rs -- as simple of an implementation as I could think of, no use of generics and uses only primitive types.
  src2.rs -- a slightly more difficult implementation where the base structure could be of any type and we constrain the 
