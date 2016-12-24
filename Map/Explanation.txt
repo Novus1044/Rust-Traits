@@ -1,0 +1,21 @@
+From the Rust docs:
+
+    pub struct Map<I,F> {
+        ... [fields ommitted],
+    }
+    
+The Map type is NOT a Rust trait but rather a type that is commonly used in conjunction with the IntoIterator/Iterator traits. 
+Since we took the time to examine those traits I thought it would be useful to look at the common adapter types, namely Map
+and Filter.
+
+From the definition of Map it is not apparently clear what this type is used for. However, in the documentation for Iterator
+it defines a function called `map` which takes an Iterator and returns a Map containing that Iterator. So, they must be 
+connected in some way and in fact they are. The `map` function from Iterator actually takes two arguments, the Iterator and
+a closure and returns a Map type containing both of those elements. Again, not exactly clear how that is useful.
+
+The interesting thing about the Map type is that also implements the Iterator trait and more importantly the function `next`.
+
+So the flow for a type would be 
+
+Base Type -> IntoIterator -> Iterator -> Map -> Iterat
+
